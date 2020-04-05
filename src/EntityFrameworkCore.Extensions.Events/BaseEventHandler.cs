@@ -16,7 +16,7 @@ namespace EntityFrameworkCore.Extensions.Events
         {
         }
 
-        public virtual void OnUpdated(DbContext context, object originalEntity, object currentEntity)
+        public virtual void OnUpdated(DbContext context, object entity)
         {
         }
         

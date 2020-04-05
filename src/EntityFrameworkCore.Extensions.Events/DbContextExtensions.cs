@@ -84,7 +84,7 @@ namespace EntityFrameworkCore.Extensions.Events
                             eventHandler.OnInserted(context, entry.Entity);
                             break;
                         case EntityState.Modified:
-                            eventHandler.OnUpdated(context, entry.OriginalValues.ToObject(), entry.Entity);
+                            eventHandler.OnUpdated(context, entry.Entity);
                             break;
                         case EntityState.Deleted:
                             eventHandler.OnDeleted(context, entry.Entity);

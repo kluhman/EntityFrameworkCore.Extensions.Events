@@ -7,7 +7,7 @@ namespace EntityFrameworkCore.Extensions.Events
         void OnInserting(DbContext context, object entity);
         void OnInserted(DbContext context, object entity);
         void OnUpdating(DbContext context, object originalEntity, object currentEntity);
-        void OnUpdated(DbContext context, object originalEntity, object currentEntity);
+        void OnUpdated(DbContext context, object entity);
         void OnDeleting(DbContext context, object entity);
         void OnDeleted(DbContext context, object entity);
     }
