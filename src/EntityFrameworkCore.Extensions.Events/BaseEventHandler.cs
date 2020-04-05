@@ -12,11 +12,11 @@ namespace EntityFrameworkCore.Extensions.Events
         {
         }
 
-        public virtual void OnUpdating(DbContext context, object entity)
+        public virtual void OnUpdating(DbContext context, object originalEntity, object currentEntity)
         {
         }
 
-        public virtual void OnUpdated(DbContext context, object entity)
+        public virtual void OnUpdated(DbContext context, object originalEntity, object currentEntity)
         {
         }
         
