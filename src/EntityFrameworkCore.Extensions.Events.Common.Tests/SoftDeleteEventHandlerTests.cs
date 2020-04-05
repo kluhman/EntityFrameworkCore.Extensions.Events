@@ -18,7 +18,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         {
             var entity = new TestEntity { IsDeleted = false };
             
-            _handler.OnInserting(null, entity);
+            _handler.OnInserting(null!, entity);
             
             Assert.Null(entity.DeletedDate);
         }
@@ -28,7 +28,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         {
             var entity = new TestEntity { IsDeleted = true };
             
-            _handler.OnInserting(null, entity);
+            _handler.OnInserting(null!, entity);
             
             Assert.NotNull(entity.DeletedDate);
         }
@@ -39,7 +39,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
             var originalEntity = new TestEntity { IsDeleted = false };
             var currentEntity = new TestEntity { IsDeleted = true };
             
-            _handler.OnUpdating(null, originalEntity, currentEntity);
+            _handler.OnUpdating(null!, originalEntity, currentEntity);
             
             Assert.NotNull(currentEntity.DeletedDate);
         }
@@ -50,7 +50,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
             var originalEntity = new TestEntity { IsDeleted = true };
             var currentEntity = new TestEntity { IsDeleted = false };
             
-            _handler.OnUpdating(null, originalEntity, currentEntity);
+            _handler.OnUpdating(null!, originalEntity, currentEntity);
             
             Assert.Null(currentEntity.DeletedDate);
         }
@@ -61,7 +61,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
             var originalEntity = new TestEntity { IsDeleted = true, DeletedDate = DateTime.MinValue };
             var currentEntity = new TestEntity { IsDeleted = true, DeletedDate = DateTime.MinValue };
             
-            _handler.OnUpdating(null, originalEntity, currentEntity);
+            _handler.OnUpdating(null!, originalEntity, currentEntity);
             
             Assert.Equal(DateTime.MinValue, currentEntity.DeletedDate);
         }

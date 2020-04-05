@@ -14,12 +14,12 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
         {
         }
         
-        public DbSet<TestEntity> TestEntities { get; set; }
+        public DbSet<TestEntity> TestEntities { get; set; } = default!;
     }
     
     public class TestEntity
     {
         public int Id { get; set; }
-        public string Value { get; set; }
+        public string Value { get; set; } = default!;
     }
 }

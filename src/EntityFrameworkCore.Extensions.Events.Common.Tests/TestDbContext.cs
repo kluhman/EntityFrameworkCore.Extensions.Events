@@ -18,6 +18,6 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         {
         }
         
-        public DbSet<TestEntity> TestEntities { get; set; }
+        public DbSet<TestEntity> TestEntities { get; set; } = default!;
     }
 }

@@ -16,7 +16,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         {
             var entity = new TestEntity();
             
-            _handler.OnInserting(null, entity);
+            _handler.OnInserting(null!, entity);
             
             Assert.NotEqual(default, entity.CreateDate);
         }
@@ -26,7 +26,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         {
             var entity = new TestEntity();
             
-            _handler.OnInserting(null, entity);
+            _handler.OnInserting(null!, entity);
             
             Assert.NotEqual(default, entity.UpdateDate);
         }
@@ -36,7 +36,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         {
             var entity = new TestEntity();
             
-            _handler.OnUpdating(null, null, entity);
+            _handler.OnUpdating(null!, null!, entity);
             
             Assert.NotEqual(default, entity.UpdateDate);
         }

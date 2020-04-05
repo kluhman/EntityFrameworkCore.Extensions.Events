@@ -130,7 +130,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
                 throw new ArgumentException($"'{methodName}' could not be found on class");
             }
             
-            return method.Invoke(this, new object?[0]) as Task;
+            return (method.Invoke(this, new object?[0]) as Task)!;
         }
 
         private Task SaveChanges()
