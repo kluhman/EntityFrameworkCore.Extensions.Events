@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityFrameworkCore.Extensions.Events.Common.Tests
 {
-    public class TestDbContext : BaseDbContext
+    public class TestDbContext : DbContextWithEvents
     {
         public TestDbContext(DbContextOptions options) : base(options, new IEventHandler[0])
         {

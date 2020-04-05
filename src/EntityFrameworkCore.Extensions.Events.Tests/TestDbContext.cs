@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityFrameworkCore.Extensions.Events.Tests
 {
-    public class TestDbContext : BaseDbContext
+    public class TestDbContext : DbContextWithEvents
     {
         public TestDbContext(IEnumerable<IEventHandler> eventHandlers) : base(eventHandlers)
         {

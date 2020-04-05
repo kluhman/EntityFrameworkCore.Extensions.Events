@@ -11,12 +11,12 @@ using Xunit;
 
 namespace EntityFrameworkCore.Extensions.Events.Tests
 {
-    public class BaseDbContextTests
+    public class DbContextWithEventsTests
     {
         private readonly Mock<IEventHandler> _eventHandler;
         private readonly TestDbContext _context;
 
-        public BaseDbContextTests()
+        public DbContextWithEventsTests()
         {
             _eventHandler = new Mock<IEventHandler>();
             _context = new TestDbContext(new DbContextOptionsBuilder()

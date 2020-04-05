@@ -8,16 +8,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityFrameworkCore.Extensions.Events
 {
-    public abstract class BaseDbContext : DbContext
+    public abstract class DbContextWithEvents : DbContext
     {
         private readonly ICollection<IEventHandler> _eventHandlers;
 
-        protected BaseDbContext(IEnumerable<IEventHandler> eventHandlers)
+        protected DbContextWithEvents(IEnumerable<IEventHandler> eventHandlers)
         {
             _eventHandlers = eventHandlers.ToList();
         }
         
-        protected BaseDbContext(DbContextOptions options, IEnumerable<IEventHandler> eventHandlers) : base(options)
+        protected DbContextWithEvents(DbContextOptions options, IEnumerable<IEventHandler> eventHandlers) : base(options)
         {
             _eventHandlers = eventHandlers.ToList();
         }
