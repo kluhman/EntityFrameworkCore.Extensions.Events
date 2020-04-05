@@ -17,9 +17,9 @@ namespace EntityFrameworkCore.Extensions.Events
             _eventHandlers = eventHandlers.ToList();
         }
         
-        protected BaseDbContext(DbContextOptions options, ICollection<IEventHandler> eventHandlers) : base(options)
+        protected BaseDbContext(DbContextOptions options, IEnumerable<IEventHandler> eventHandlers) : base(options)
         {
-            _eventHandlers = eventHandlers;
+            _eventHandlers = eventHandlers.ToList();
         }
 
         public override int SaveChanges()
