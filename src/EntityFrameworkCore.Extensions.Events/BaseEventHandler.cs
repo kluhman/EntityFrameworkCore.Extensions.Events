@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics.CodeAnalysis;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace EntityFrameworkCore.Extensions.Events
 {
+    [ExcludeFromCodeCoverage]
     public abstract class BaseEventHandler : IEventHandler
     {
         public virtual void OnInserting(DbContext context, object entity)
