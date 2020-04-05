@@ -1,7 +1,11 @@
 # EntityFrameworkCore.Extensions.Events
 
 [![Build Status](https://dev.azure.com/kluhman/EntityFrameworkCore.Extensions.Events/_apis/build/status/EntityFrameworkCore.Extensions.Events?branchName=master)](https://dev.azure.com/kluhman/EntityFrameworkCore.Extensions.Events/_build/latest?definitionId=4&branchName=master)
-[![Nuget](https://img.shields.io/nuget/v/EntityFrameworkCore.Extensions.Events)](https://www.nuget.org/packages/EntityFrameworkCore.Extensions.Events/)
+
+| Package                                      |   |
+|----------------------------------------------|---|
+| **EntityFrameworkCore.Extensions.Events**        | [![Nuget](https://img.shields.io/nuget/v/EntityFrameworkCore.Extensions.Events)](https://www.nuget.org/packages/EntityFrameworkCore.Extensions.Events/)   |
+| **EntityFrameworkCore.Extensions.Events.Common** | [![Nuget](https://img.shields.io/nuget/v/EntityFrameworkCore.Extensions.Events.Common)](https://www.nuget.org/packages/EntityFrameworkCore.Extensions.Events.Common/)   |
 
 ## Overview
 
