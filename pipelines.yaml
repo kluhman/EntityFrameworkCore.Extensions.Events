@@ -55,7 +55,7 @@ stages:
                     command: 'push'
                     packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg;!$(Pipeline.Workspace)/**/*.symbols.nupkg'
                     nuGetFeedType: 'internal'
-                    publishVstsFeed: ''
+                    publishVstsFeed: 'd709a194-9ce6-4530-a6e2-22368bf72347/0d984cd1-0749-4fe0-b7b3-debfb4ba4890'
                     allowPackageConflicts: true
   - stage: Public
     dependsOn: Build
