@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -34,18 +32,6 @@ namespace EntityFrameworkCore.Extensions.Events.Common
         public static TEntity SoftDelete<TEntity>(this DbContext context, params object[] key) where TEntity : class, ISupportSoftDelete
         {
             var entity = context.Find<TEntity>(key);
-            return entity.SoftDelete();
-        }
-        
-        public static async Task<TEntity> SoftDeleteAsync<TEntity>(this DbSet<TEntity> dbSet, object[] key, CancellationToken cancellationToken = default) where TEntity : class, ISupportSoftDelete
-        {
-            var entity = await dbSet.FindAsync(key, cancellationToken);
-            return entity.SoftDelete();
-        }
-        
-        public static async Task<TEntity> SoftDeleteAsync<TEntity>(this DbContext context, object[] key, CancellationToken cancellationToken = default) where TEntity : class, ISupportSoftDelete
-        {
-            var entity = await context.FindAsync<TEntity>(key, cancellationToken);
             return entity.SoftDelete();
         }
     }

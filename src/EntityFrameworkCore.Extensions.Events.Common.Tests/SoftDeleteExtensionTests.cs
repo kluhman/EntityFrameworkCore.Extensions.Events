@@ -74,32 +74,5 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
             
             Assert.True(entity.IsDeleted);
         }
-        
-        // NOTE: For some reason, these throw a MethodMissingException even though the methods
-        //       seem to exist. Leaving here until I figure out how to fix them
-        //
-        // [Fact]
-        // public void SoftDeleteAsync_OnDbSet_ShouldMarkEntityDeleted()
-        // {
-        //     var entity = new TestEntity();
-        //     _context.TestEntities.Add(entity);
-        //     _context.SaveChanges();
-        //
-        //     _context.TestEntities.SoftDeleteAsync(new object[] { entity.Id });
-        //     
-        //     Assert.True(entity.IsDeleted);
-        // }
-        //
-        // [Fact]
-        // public void SoftDeleteAsync_OnDbContext_ShouldMarkEntityDeleted()
-        // {
-        //     var entity = new TestEntity();
-        //     _context.TestEntities.Add(entity);
-        //     _context.SaveChanges();
-        //
-        //     _context.SoftDeleteAsync<TestEntity>(new object[] { entity.Id });
-        //     
-        //     Assert.True(entity.IsDeleted);
-        // }
     }
 }
