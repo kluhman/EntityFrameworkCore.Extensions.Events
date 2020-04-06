@@ -46,14 +46,14 @@ namespace EntityFrameworkCore.Extensions.Events
             return result;
         }
         
-        private static Dictionary<EntityState, EntityEntry> HandlePreSaveEvents(this DbContext context, ICollection<IEventHandler> eventHandlers)
+        private static List<KeyValuePair<EntityState, EntityEntry>> HandlePreSaveEvents(this DbContext context, ICollection<IEventHandler> eventHandlers)
         {
-            var entries = new Dictionary<EntityState, EntityEntry>();
+            var entries = new List<KeyValuePair<EntityState, EntityEntry>>();
             foreach (var entry in context.ChangeTracker.Entries())
             {
                 foreach (var eventHandler in eventHandlers)
                 {
-                    entries.Add(entry.State, entry);
+                    entries.Add(new KeyValuePair<EntityState, EntityEntry>(entry.State, entry));
                     switch (entry.State)
                     {
                         case EntityState.Added:
@@ -72,7 +72,7 @@ namespace EntityFrameworkCore.Extensions.Events
             return entries;
         }
 
-        private static void HandlePostSaveEvents(this DbContext context, ICollection<IEventHandler> eventHandlers, Dictionary<EntityState, EntityEntry> entries)
+        private static void HandlePostSaveEvents(this DbContext context, ICollection<IEventHandler> eventHandlers, IEnumerable<KeyValuePair<EntityState, EntityEntry>> entries)
         {
             foreach (var (state, entry) in entries)
             {
