@@ -16,7 +16,7 @@ namespace EntityFrameworkCore.Extensions.Events
         {
             _eventHandlers = eventHandlers.ToList();
         }
-        
+
         protected DbContextWithEvents(DbContextOptions options, IEnumerable<IEventHandler> eventHandlers) : base(options)
         {
             _eventHandlers = eventHandlers.ToList();

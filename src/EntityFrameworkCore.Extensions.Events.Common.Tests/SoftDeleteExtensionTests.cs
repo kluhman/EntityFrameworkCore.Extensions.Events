@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
@@ -13,44 +14,44 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
 
         public SoftDeleteExtensionTests()
         {
-            _context =  new TestDbContext(new DbContextOptionsBuilder()
+            _context = new TestDbContext(new DbContextOptionsBuilder()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options);
         }
-        
+
         [Fact]
         public void IsNotDeleted_ShouldFilterOutDeletedEntities()
         {
             var undeletedEntity = new TestEntity();
             var deletedEntity = new TestEntity().SoftDelete();
-            
+
             _context.TestEntities.AddRange(deletedEntity, undeletedEntity);
             _context.SaveChanges();
-            
+
             Assert.Equal(undeletedEntity, _context.TestEntities.IsNotDeleted().Single());
         }
-        
+
         [Fact]
         public void IsDeleted_ShouldFilterOutDeletedEntities()
         {
             var undeletedEntity = new TestEntity();
             var deletedEntity = new TestEntity().SoftDelete();
-            
+
             _context.TestEntities.AddRange(deletedEntity, undeletedEntity);
             _context.SaveChanges();
-            
+
             Assert.Equal(deletedEntity, _context.TestEntities.IsDeleted().Single());
         }
-        
+
         [Fact]
         public void SoftDelete_OnEntity_ShouldMarkEntityDeleted()
         {
             var entity = new TestEntity();
             entity.SoftDelete();
-            
+
             Assert.True(entity.IsDeleted);
         }
-        
+
         [Fact]
         public void SoftDelete_OnDbSet_ShouldMarkEntityDeleted()
         {
@@ -59,10 +60,10 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
             _context.SaveChanges();
 
             _context.TestEntities.SoftDelete(entity.Id);
-            
+
             Assert.True(entity.IsDeleted);
         }
-        
+
         [Fact]
         public void SoftDelete_OnDbContext_ShouldMarkEntityDeleted()
         {
@@ -71,7 +72,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
             _context.SaveChanges();
 
             _context.SoftDelete<TestEntity>(entity.Id);
-            
+
             Assert.True(entity.IsDeleted);
         }
     }

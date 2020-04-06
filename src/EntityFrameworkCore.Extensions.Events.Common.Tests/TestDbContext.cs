@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +11,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         public TestDbContext(DbContextOptions options) : base(options, new IEventHandler[0])
         {
         }
-        
+
         public TestDbContext(IEnumerable<IEventHandler> eventHandlers) : base(eventHandlers)
         {
         }
@@ -17,7 +19,7 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         public TestDbContext(DbContextOptions options, ICollection<IEventHandler> eventHandlers) : base(options, eventHandlers)
         {
         }
-        
+
         public DbSet<TestEntity> TestEntities { get; set; } = default!;
     }
 }

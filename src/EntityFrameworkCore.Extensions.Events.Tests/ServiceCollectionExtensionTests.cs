@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Microsoft.Extensions.DependencyInjection;
 
 using Xunit;
 
@@ -20,7 +24,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
 
             Assert.Contains(_services, x => x.ImplementationType == typeof(TestEventHandler));
         }
-        
+
         [Fact]
         public void AddEventHandlers_ShouldAddEventHandlersInAppDomain()
         {

@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Microsoft.Extensions.DependencyInjection;
 
 using Xunit;
 
@@ -17,15 +21,15 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         public void AddCommonEventHandlers_ShouldAddAuditEventHandler()
         {
             _services.AddCommonEventHandlers();
-            
+
             Assert.Contains(_services, x => x.ImplementationType == typeof(AuditEventHandler));
         }
-        
+
         [Fact]
         public void AddCommonEventHandlers_ShouldAddSoftDeleteEventHandler()
         {
             _services.AddCommonEventHandlers();
-            
+
             Assert.Contains(_services, x => x.ImplementationType == typeof(AuditEventHandler));
         }
     }

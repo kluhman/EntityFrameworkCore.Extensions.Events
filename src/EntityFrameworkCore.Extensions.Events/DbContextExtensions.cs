@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,37 +16,37 @@ namespace EntityFrameworkCore.Extensions.Events
             var entries = context.HandlePreSaveEvents(eventHandlers);
             var result = saveChanges();
             context.HandlePostSaveEvents(eventHandlers, entries);
-            
+
             return result;
         }
-        
+
         public static int SaveChangesWithEvents(this DbContext context, bool acceptAllChangesOnSuccess, ICollection<IEventHandler> eventHandlers, Func<bool, int> saveChanges)
         {
             var entries = context.HandlePreSaveEvents(eventHandlers);
             var result = saveChanges(acceptAllChangesOnSuccess);
             context.HandlePostSaveEvents(eventHandlers, entries);
-            
+
             return result;
         }
-        
+
         public static async Task<int> SaveChangesWithEventsAsync(this DbContext context, CancellationToken cancellationToken, ICollection<IEventHandler> eventHandlers, Func<CancellationToken, Task<int>> saveChanges)
         {
             var entries = context.HandlePreSaveEvents(eventHandlers);
             var result = await saveChanges(cancellationToken);
             context.HandlePostSaveEvents(eventHandlers, entries);
-            
+
             return result;
         }
-        
+
         public static async Task<int> SaveChangesWithEventsAsync(this DbContext context, bool acceptAllChangesOnSuccess, CancellationToken cancellationToken, ICollection<IEventHandler> eventHandlers, Func<bool, CancellationToken, Task<int>> saveChanges)
         {
             var entries = context.HandlePreSaveEvents(eventHandlers);
             var result = await saveChanges(acceptAllChangesOnSuccess, cancellationToken);
             context.HandlePostSaveEvents(eventHandlers, entries);
-            
+
             return result;
         }
-        
+
         private static List<KeyValuePair<EntityState, EntityEntry>> HandlePreSaveEvents(this DbContext context, ICollection<IEventHandler> eventHandlers)
         {
             var entries = new List<KeyValuePair<EntityState, EntityEntry>>();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -11,7 +12,7 @@ namespace EntityFrameworkCore.Extensions.Events
         public static IServiceCollection AddEventHandlers(this IServiceCollection services)
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            
+
             foreach (var assembly in assemblies)
             {
                 services.AddEventHandlers(assembly);
@@ -19,7 +20,7 @@ namespace EntityFrameworkCore.Extensions.Events
 
             return services;
         }
-        
+
         public static IServiceCollection AddEventHandlers(this IServiceCollection services, Assembly assembly)
         {
             var eventHandlersTypes = assembly

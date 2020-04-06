@@ -1,4 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +25,7 @@ namespace EntityFrameworkCore.Extensions.Events
         public virtual void OnUpdated(DbContext context, object entity)
         {
         }
-        
+
         public virtual void OnDeleting(DbContext context, object entity)
         {
         }
