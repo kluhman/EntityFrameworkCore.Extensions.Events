@@ -58,13 +58,13 @@ namespace EntityFrameworkCore.Extensions.Events
                     switch (entry.State)
                     {
                         case EntityState.Added:
-                            eventHandler.OnInserting(context, entry.Entity);
+                            eventHandler.OnInserting(context, entry);
                             break;
                         case EntityState.Modified:
-                            eventHandler.OnUpdating(context, entry.OriginalValues.ToObject(), entry.Entity);
+                            eventHandler.OnUpdating(context, entry);
                             break;
                         case EntityState.Deleted:
-                            eventHandler.OnDeleting(context, entry.Entity);
+                            eventHandler.OnDeleting(context, entry);
                             break;
                     }
                 }
@@ -82,13 +82,13 @@ namespace EntityFrameworkCore.Extensions.Events
                     switch (state)
                     {
                         case EntityState.Added:
-                            eventHandler.OnInserted(context, entry.Entity);
+                            eventHandler.OnInserted(context, entry);
                             break;
                         case EntityState.Modified:
-                            eventHandler.OnUpdated(context, entry.Entity);
+                            eventHandler.OnUpdated(context, entry);
                             break;
                         case EntityState.Deleted:
-                            eventHandler.OnDeleted(context, entry.Entity);
+                            eventHandler.OnDeleted(context, entry);
                             break;
                     }
                 }

@@ -20,6 +20,6 @@ namespace EntityFrameworkCore.Extensions.Events.Common.Tests
         {
         }
 
-        public DbSet<TestEntity> TestEntities { get; set; } = default!;
+        public DbSet<Person> People { get; set; } = default!;
     }
 }
