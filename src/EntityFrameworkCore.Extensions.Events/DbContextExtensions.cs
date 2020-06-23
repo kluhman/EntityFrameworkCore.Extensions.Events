@@ -50,7 +50,7 @@ namespace EntityFrameworkCore.Extensions.Events
         private static List<KeyValuePair<EntityState, EntityEntry>> HandlePreSaveEvents(this DbContext context, ICollection<IEventHandler> eventHandlers)
         {
             var entries = new List<KeyValuePair<EntityState, EntityEntry>>();
-            foreach (var entry in context.ChangeTracker.Entries())
+            foreach (var entry in context.ChangeTracker.Entries().ToList())
             {
                 foreach (var eventHandler in eventHandlers)
                 {
