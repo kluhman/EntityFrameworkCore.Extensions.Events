@@ -24,7 +24,7 @@ namespace EntityFrameworkCore.Extensions.Events
 
         public override int SaveChanges()
         {
-            return this.SaveChangesWithEvents(_eventHandlers, base.SaveChanges);
+            return SaveChanges(true);
         }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -34,7 +34,7 @@ namespace EntityFrameworkCore.Extensions.Events
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            return this.SaveChangesWithEventsAsync(cancellationToken, _eventHandlers, base.SaveChangesAsync);
+            return SaveChangesAsync(true, cancellationToken);
         }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)

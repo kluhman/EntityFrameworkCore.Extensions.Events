@@ -52,9 +52,9 @@ namespace EntityFrameworkCore.Extensions.Events
             var entries = new List<KeyValuePair<EntityState, EntityEntry>>();
             foreach (var entry in context.ChangeTracker.Entries().ToList())
             {
+                entries.Add(new KeyValuePair<EntityState, EntityEntry>(entry.State, entry));
                 foreach (var eventHandler in eventHandlers)
                 {
-                    entries.Add(new KeyValuePair<EntityState, EntityEntry>(entry.State, entry));
                     switch (entry.State)
                     {
                         case EntityState.Added:

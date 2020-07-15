@@ -39,7 +39,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
 
             await ExecuteSaveChanges(saveChanges);
 
-            _eventHandler.Verify(x => x.OnInserting(_context, It.Is<EntityEntry>(e => e.Entity == entity)));
+            _eventHandler.Verify(x => x.OnInserting(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
         }
 
         [Theory]
@@ -54,7 +54,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
 
             await ExecuteSaveChanges(saveChanges);
 
-            _eventHandler.Verify(x => x.OnInserted(_context, It.Is<EntityEntry>(e => e.Entity == entity)));
+            _eventHandler.Verify(x => x.OnInserted(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
         }
 
         [Theory]
@@ -71,7 +71,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
             entity.Value = "new";
             await ExecuteSaveChanges(saveChanges);
 
-            _eventHandler.Verify(x => x.OnUpdating(_context, It.Is<EntityEntry>(e => e.Entity == entity)));
+            _eventHandler.Verify(x => x.OnUpdating(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
         }
 
         [Theory]
@@ -88,7 +88,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
             entity.Value = "new";
             await ExecuteSaveChanges(saveChanges);
 
-            _eventHandler.Verify(x => x.OnUpdated(_context, It.Is<EntityEntry>(e => e.Entity == entity)));
+            _eventHandler.Verify(x => x.OnUpdated(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
         }
 
         [Theory]
@@ -105,7 +105,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
             _context.TestEntities.Remove(entity);
             await ExecuteSaveChanges(saveChanges);
 
-            _eventHandler.Verify(x => x.OnDeleting(_context, It.Is<EntityEntry>(e => e.Entity == entity)));
+            _eventHandler.Verify(x => x.OnDeleting(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
         }
 
         [Theory]
@@ -122,7 +122,7 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
             _context.TestEntities.Remove(entity);
             await ExecuteSaveChanges(saveChanges);
 
-            _eventHandler.Verify(x => x.OnDeleted(_context, It.Is<EntityEntry>(e => e.Entity == entity)));
+            _eventHandler.Verify(x => x.OnDeleted(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
         }
 
         private Task ExecuteSaveChanges(string methodName)
