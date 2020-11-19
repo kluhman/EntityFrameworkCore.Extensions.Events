@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -123,6 +121,38 @@ namespace EntityFrameworkCore.Extensions.Events.Tests
             await ExecuteSaveChanges(saveChanges);
 
             _eventHandler.Verify(x => x.OnDeleted(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
+        }
+        
+        [Theory]
+        [InlineData(nameof(SaveChanges))]
+        [InlineData(nameof(SaveChangesAsync))]
+        [InlineData(nameof(SaveChangesWithOptions))]
+        [InlineData(nameof(SaveChangesWithOptionsAsync))]
+        public async Task SaveChanges_ShouldExecuteBeforeUnchangedHandlers_WhenEntityIsUnchanged(string saveChanges)
+        {
+            var entity = new TestEntity();
+            _context.TestEntities.Add(entity);
+            await ExecuteSaveChanges(saveChanges);
+
+            await ExecuteSaveChanges(saveChanges);
+
+            _eventHandler.Verify(x => x.BeforeUnchanged(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
+        }
+        
+        [Theory]
+        [InlineData(nameof(SaveChanges))]
+        [InlineData(nameof(SaveChangesAsync))]
+        [InlineData(nameof(SaveChangesWithOptions))]
+        [InlineData(nameof(SaveChangesWithOptionsAsync))]
+        public async Task SaveChanges_ShouldExecuteAfterUnchangedHandlers_WhenEntityIsUnchanged(string saveChanges)
+        {
+            var entity = new TestEntity();
+            _context.TestEntities.Add(entity);
+            await ExecuteSaveChanges(saveChanges);
+
+            await ExecuteSaveChanges(saveChanges);
+
+            _eventHandler.Verify(x => x.AfterUnchanged(_context, It.Is<EntityEntry>(e => e.Entity == entity)), Times.Once);
         }
 
         private Task ExecuteSaveChanges(string methodName)
