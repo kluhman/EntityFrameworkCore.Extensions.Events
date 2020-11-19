@@ -66,6 +66,9 @@ namespace EntityFrameworkCore.Extensions.Events
                         case EntityState.Deleted:
                             eventHandler.OnDeleting(context, entry);
                             break;
+                        case EntityState.Unchanged:
+                            eventHandler.BeforeUnchanged(context, entry);
+                            break;
                     }
                 }
             }
@@ -89,6 +92,9 @@ namespace EntityFrameworkCore.Extensions.Events
                             break;
                         case EntityState.Deleted:
                             eventHandler.OnDeleted(context, entry);
+                            break;
+                        case EntityState.Unchanged:
+                            eventHandler.AfterUnchanged(context, entry);
                             break;
                     }
                 }
